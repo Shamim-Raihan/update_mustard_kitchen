@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>868144413836-gv3achnv3k6ni4232r2sllquogeltmfk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.868144413836-gv3achnv3k6ni4232r2sllquogeltmfk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCS-A_J8PppGIOAemBjT-NYp3a-HIUsO3U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>868144413836</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.indian.mustardKitchen</string>
+	<key>PROJECT_ID</key>
+	<string>mustard-indian-kitchen-681a9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mustard-indian-kitchen-681a9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:868144413836:ios:b1aa7e7031ce2c3c0fcfa9</string>
+	<key>DATABASE_URL</key>
+	<string>https://mustard-indian-kitchen-681a9-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
