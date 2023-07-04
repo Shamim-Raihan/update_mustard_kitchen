@@ -100,8 +100,8 @@ class NewNotificationService {
   static void createAndDisplaynotification(RemoteMessage message) async {
     AndroidNotificationDetails androidDetails =
         const AndroidNotificationDetails(
-      'wholesaleclub',
-      'wholesaleclubNotification',
+      'mustardkitchen',
+      'mustardkitchenNotification',
       icon: '@mipmap/ic_launcher',
       importance: Importance.max,
       priority: Priority.max,
@@ -123,7 +123,8 @@ class NewNotificationService {
         message.notification!.title,
         message.notification!.body,
         notificationDetails,
-        payload: message.data["body"],
+        payload: message.data["click_action"],
+        // payload: message.notification!.android!.clickAction,
       );
     } on Exception catch (e) {
       log(e.toString());

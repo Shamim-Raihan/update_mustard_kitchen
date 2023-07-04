@@ -12,7 +12,6 @@ import 'firebase_option.dart';
 import 'screens/notification_page.dart';
 import 'services/navigation_service.dart';
 
-
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
@@ -21,13 +20,14 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
   log("Handling a background message: ${message.messageId}");
   log("Handling a background message: ${message.notification!.title}");
+  log('link: ${message.data['body']}');
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Firebase.initializeApp();
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   NewNotificationService.requestNotiPermission();
   NewNotificationService.initializeNotification();
   runApp(const MyApp());
@@ -41,13 +41,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-    void registerNotification() async {
+  void registerNotification() async {
     FirebaseMessaging.instance.getInitialMessage().then(
       (message) {
         log("FirebaseMessaging.instance.getInitialMessage");
         if (message != null) {
           log("New Notification");
-          Navigator.pushReplacement(NavigationService.context, MaterialPageRoute(builder: (context)=>ShowNotification(notificationUrl: message.notification!.body.toString())));
+          // Navigator.pushReplacement(NavigationService.context, MaterialPageRoute(builder: (context)=>ShowNotification(notificationUrl: message.notification!.body.toString())));
+          Navigator.pushReplacement(
+              NavigationService.context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ShowNotification(notificationUrl: message.data['click_action'])));
           if (message.data['id'] != null) {
             log("Firebase Message : Go to new page");
             Navigator.of(context).push(
@@ -88,16 +93,22 @@ class _MyAppState extends State<MyApp> {
       (message) {
         log("FirebaseMessaging.onMessageOpenedApp.listen");
         if (message.notification != null) {
-          log(message.notification!.title.toString());
-          log(message.notification!.body.toString());
-          log("message.data22 ${message.data['id']}");
-          log('mini');
-          log(message.toString());
-          Navigator.of(NavigationService.context).pop();
+          // log(message.notification!.title.toString());
+          // log(message.notification!.body.toString());
+          // log("message.data22 ${message.data['id']}");
+          // log('mini');
+          // log(message.toString());
+
+          // Navigator.of(NavigationService.context).pop();
+          // Navigator.of(NavigationService.context).push(MaterialPageRoute(
+          //     builder: (context) => ShowNotification(
+          //           notificationUrl: message.notification!.body.toString(),
+          //         )));
+          log(message.data['body']);
           Navigator.of(NavigationService.context).push(MaterialPageRoute(
-              builder: (context) => ShowNotification(
-                    notificationUrl: message.notification!.body.toString(),
-                  )));
+            builder: (context) => ShowNotification(
+                  notificationUrl: message.data['click_action'],
+                )));
         }
       },
     );
@@ -116,6 +127,7 @@ class _MyAppState extends State<MyApp> {
     registerNotification();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
