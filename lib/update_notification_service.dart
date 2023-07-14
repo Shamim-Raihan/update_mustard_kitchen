@@ -32,7 +32,7 @@ FirebaseMessaging messaging = FirebaseMessaging.instance;
 class NewNotificationService {
   NewNotificationService._();
   AndroidInitializationSettings androidInitializationSettings =
-      const AndroidInitializationSettings('@mipmap/ic_launcher');
+      const AndroidInitializationSettings('@mipmap/launcher_icon');
   DarwinInitializationSettings? iosSettings =
       const DarwinInitializationSettings(
     requestAlertPermission: true,
@@ -68,7 +68,7 @@ class NewNotificationService {
   static void initializeNotification() async {
     const InitializationSettings initializationSettings =
         InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      android: AndroidInitializationSettings('@mipmap/launcher_icon'),
       iOS: DarwinInitializationSettings(
         requestAlertPermission: true,
         requestSoundPermission: true,
@@ -102,7 +102,7 @@ class NewNotificationService {
         const AndroidNotificationDetails(
       'mustardkitchen',
       'mustardkitchenNotification',
-      icon: '@mipmap/ic_launcher',
+      icon: '@mipmap/launcher_icon',
       importance: Importance.max,
       priority: Priority.max,
       playSound: true,

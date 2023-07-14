@@ -24,7 +24,13 @@ class _HomePageState extends State<HomePage> {
 
     return Obx(() {
       if (homeController.url.value == '') {
-        return CircularProgressIndicator();
+        return Center(
+          child: Container(
+            height: 100,
+            width: 100,
+            child: CircularProgressIndicator(),
+          ),
+        );
       } else {
         log('url : ' + homeController.url.value);
         final controller = WebViewController()

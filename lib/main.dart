@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:mustard_kitchen/screens/home_page.dart';
+import 'package:mustard_kitchen/screens/splash_page.dart';
 import 'package:mustard_kitchen/update_notification_service.dart';
 
 import 'firebase_option.dart';
@@ -47,28 +48,36 @@ class _MyAppState extends State<MyApp> {
         log("FirebaseMessaging.instance.getInitialMessage");
         if (message != null) {
           log("New Notification");
-          // Navigator.pushReplacement(NavigationService.context, MaterialPageRoute(builder: (context)=>ShowNotification(notificationUrl: message.notification!.body.toString())));
-          Navigator.pushReplacement(
+          Future.delayed(Duration(seconds: 4), () {
+                      Navigator.pushReplacement(
               NavigationService.context,
               MaterialPageRoute(
                   builder: (context) =>
                       ShowNotification(notificationUrl: message.data['click_action'])));
-          if (message.data['id'] != null) {
-            log("Firebase Message : Go to new page");
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => ShowNotification(
-                  notificationUrl: '',
-                ),
-              ),
-            );
-            log('clicked on notification');
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return ShowNotification(
-                notificationUrl: '',
-              );
-            }));
-          }
+    });
+          // Navigator.of(NavigationService.context).pop();
+          // Navigator.pushReplacement(NavigationService.context, MaterialPageRoute(builder: (context)=>ShowNotification(notificationUrl: message.notification!.body.toString())));
+          // Navigator.pushReplacement(
+          //     NavigationService.context,
+          //     MaterialPageRoute(
+          //         builder: (context) =>
+          //             ShowNotification(notificationUrl: message.data['click_action'])));
+          // if (message.data['id'] != null) {
+          //   log("Firebase Message : Go to new page");
+          //   Navigator.of(context).push(
+          //     MaterialPageRoute(
+          //       builder: (context) => ShowNotification(
+          //         notificationUrl: '',
+          //       ),
+          //     ),
+          //   );
+          //   log('clicked on notification');
+          //   Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+          //     return ShowNotification(
+          //       notificationUrl: '',
+          //     );
+          //   }));
+          // }
         }
       },
     );
@@ -99,7 +108,7 @@ class _MyAppState extends State<MyApp> {
           // log('mini');
           // log(message.toString());
 
-          // Navigator.of(NavigationService.context).pop();
+          Navigator.of(NavigationService.context).pop();
           // Navigator.of(NavigationService.context).push(MaterialPageRoute(
           //     builder: (context) => ShowNotification(
           //           notificationUrl: message.notification!.body.toString(),
@@ -132,13 +141,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Mustard Indian',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       navigatorKey: NavigationService.navigatorKey,
-      home: const HomePage(),
+      // home: const HomePage(),
+      home: SplashScreen(),
     );
   }
 }
