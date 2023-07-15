@@ -153,7 +153,10 @@ class NewNotificationService {
 
       log("The token is :${fcmToken!}");
       globals.url = fcmToken;
+    }
+    if (fcmToken != null) {
       HomeController homeController = Get.put(HomeController());
+
       if (Platform.isAndroid) {
         homeController.url.value =
             'https://apps.mustardindian.com/?platform=android&token=$fcmToken';
@@ -161,7 +164,11 @@ class NewNotificationService {
         homeController.url.value =
             'https://apps.mustardindian.com/?platform=ios&token=$fcmToken';
       }
+      log('run with permission');
+    } else {
+      HomeController homeController = Get.put(HomeController());
+      homeController.url.value = 'https://apps.mustardindian.com';
+      log('run without permission');
     }
-    if (fcmToken != null) {}
   }
 }

@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
         log('url : ' + homeController.url.value);
         final controller = WebViewController()
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
-          ..setBackgroundColor(const Color(0x00000000))
+          ..setBackgroundColor(const Color(0x001a1a1a))
           ..setNavigationDelegate(
             NavigationDelegate(
               onProgress: (int progress) {
